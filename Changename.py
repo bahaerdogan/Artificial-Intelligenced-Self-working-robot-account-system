@@ -8,7 +8,7 @@ def change_display_name(new_name):
     new_name (str): The new display name to set.
     """
     try:
-        host = Host("fenerbaahce8282", "10suzolmaz")
+        host = Host("username", "password")
         host.change_display_name(new_name)
         print("Display name changed successfully!")
     except Exception as e:

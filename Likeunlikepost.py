@@ -24,7 +24,7 @@
 
 from ensta import Host
 
-host = Host("fenerbaahce8282", "10suzolmaz")
+host = Host("username", "password")
 post_id = host.get_post_id("https://www.instagram.com/p/Czr2yLmroCQ/")
 
 host.like(post_id)

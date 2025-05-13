@@ -1,31 +1,63 @@
 import schedule
 import time
 import random
+import os
 from ensta import Host
+from dotenv import load_dotenv
 
-# Create Instagram host and profile
-host = Host("fenerbaahce8282", "10suzolmaz")
-profile = host.profile("neymarjr")
+# Load environment variables
+load_dotenv()
 
-# Rasgele yorum ve beğeni listeleri
-comments = ["Harika bir foto!", "Bu fotoğraf muhteşem!", 
-"Çok güzel!","canimmmm", "Mükemmel!", "Bunu seviyorum!", 
-"Harika görünüyor!", "Bunu beğendim!"]
+# Get Instagram credentials from environment variables
+INSTAGRAM_USERNAME = os.getenv('INSTAGRAM_USERNAME')
+INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
+
+if not INSTAGRAM_USERNAME or not INSTAGRAM_PASSWORD:
+    raise ValueError("Instagram credentials not found in environment variables. Please set INSTAGRAM_USERNAME and INSTAGRAM_PASSWORD in .env file")
+
+# Create Instagram host
+host = Host(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD)
+
+# Comments and emojis for random selection
+comments = [
+    "Harika bir foto!",
+    "Bu fotoğraf muhteşem!",
+    "Çok güzel!",
+    "Mükemmel!",
+    "Bunu seviyorum!",
+    "Harika görünüyor!",
+    "Bunu beğendim!"
+]
+
 emojis = ["👍", "❤️", "😍", "🔥", "💯", "🌟", "🙌", "🎉"]
 
-def post_photo():
+def post_photo(photo_path=None, caption=None):
     """
     Uploads a photo to Instagram.
+    
+    Args:
+        photo_path (str): Path to the photo file. If None, will use default from env.
+        caption (str): Caption for the photo. If None, will use default from env.
     """
     try:
-        photo_path = "image.png"  
+        if not photo_path:
+            photo_path = os.getenv('DEFAULT_PHOTO_PATH')
+            if not photo_path:
+                raise ValueError("No photo path provided and DEFAULT_PHOTO_PATH not set in environment variables")
+        
+        if not os.path.exists(photo_path):
+            raise FileNotFoundError(f"Photo file not found at {photo_path}")
+            
+        if not caption:
+            caption = os.getenv('DEFAULT_CAPTION', '')
+            
         upload = host.get_upload_id(photo_path)
-        caption = "Açiklamayi avukatim yapacak!" 
         host.upload_photo(upload, caption=caption)
         print("Photo posted successfully!")
     except Exception as e:
         print(f"Error posting photo: {e}")
- 
+        raise
+
 def follow_unfollow_user(username, action):
     """
     Follows or unfollows the specified user.
@@ -111,15 +143,14 @@ def update_profile_information(display_name, bio):
 
 if __name__ == "__main__":
     try:
-        update_profile_information("Fenerbahce 12.adam", "Adam gibi adam")
+        # Example usage - replace with your desired actions
         schedule_posting()
 
         while True:
             schedule.run_pending()
-            time.sleep(60)  # Rasgele gecikme ekleme süresi
-            # Rasgele yorum ekleme
-            add_comment("https://www.instagram.com/p/...")
-            # Rasgele bir kullanıcıyı takip etme veya takibi bırakma
-            follow_unfollow_user("username", random.choice(["follow", "unfollow"]))
+            time.sleep(60)
     except KeyboardInterrupt:
         print("Automation stopped by the user")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise

@@ -2,8 +2,8 @@ from ensta import Host
 from ensta import Mobile
 
 
-host = Host("fenerbaahce8282", "10suzolmaz")
-# mobile = Mobile("fenerbaahce8282", "10suzolmaz")
+host = Host("username", "password")
+# mobile = Mobile("username", "password")
 # mobile.change_profile_picture("image.jpg")
 
 posts = host.posts("istegundem", 0)  # Want full list? Set count to '0'

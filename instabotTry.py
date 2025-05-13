@@ -3,7 +3,7 @@
 # import random
 # from ensta import Host
 
-# host = Host("fenerbaahce8282", "10suzolmaz")
+# host = Host("username", "password")
 # profile = host.profile("neymarjr")
 
 # def schedule_posting():
@@ -32,7 +32,7 @@ import random
 from ensta import Host
 from Cheataction import unfollow_cheaters  # Import the function
 
-host = Host("fenerbaahce8282", "10suzolmaz")
+host = Host("username", "password")
 profile = host.profile("neymarjr")
 
 def schedule_posting():

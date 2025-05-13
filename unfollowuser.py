@@ -3,7 +3,7 @@ import time
 import random
 from ensta import Host
 
-host = Host("fenerbaahce8282", "10suzolmaz")
+host = Host("username", "password")
 profile = host.profile("neymarjr")
 
 

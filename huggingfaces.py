@@ -6,7 +6,7 @@ from PIL import Image
 from transformers import CLIPProcessor, CLIPModel
 
 # Create Instagram host and profile
-host = Host("fenerbaahce8282", "10suzolmaz")
+host = Host("username", "password")
 profile = host.profile("neymarjr")
 
 # Rasgele yorum ve beğeni listeleri

@@ -3,7 +3,7 @@
 # import random
 # from ensta import Host
 
-# host = Host("fenerbaahce8282", "10suzolmaz")"
+# host = Host("username", "password")"
 # profile = host.profile("neymarjr")
 
 # def post_photo():
@@ -23,7 +23,7 @@ from ensta import Host
 from PIL import Image
 from transformers import CLIPProcessor, CLIPModel
 
-host = Host("fenerbaahce8282", "10suzolmaz")
+host = Host("username", "password")
 profile = host.profile("neymarjr")
 
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")

@@ -8,7 +8,7 @@ def change_bio(new_bio):
     new_bio (str): The new bio text to set.
     """
     try:
-        host = Host("fenerbaahce8282", "10suzolmaz")
+        host = Host("username", "password")
         host.change_bio(new_bio)
         print("Bio changed successfully!")
     except Exception as e:

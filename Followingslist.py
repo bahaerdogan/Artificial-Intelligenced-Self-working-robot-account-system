@@ -9,7 +9,7 @@ def get_followings_list(username, count=100):
     count (int): The number of followings to retrieve. Set to 0 to retrieve all followings.
     """
     try:
-        host = Host("fenerbaahce8282", "10suzolmaz")
+        host = Host("username", "password")
         followings = host.followings(username, count=count)
         for user in followings:
             print(user.username)

@@ -1,7 +1,7 @@
 from ensta import Host
 from FollowCheaters import compare_lists  # Import the function from your other file
 
-host = Host("fenerbaahce8282", "10suzolmaz")
+host = Host("username", "password")
 
 def unfollow_cheaters(username):
     cheaters = compare_lists(username)
